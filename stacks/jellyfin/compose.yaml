@@ -7,10 +7,10 @@ services:
       - PGID=1000
       - TZ=Europe/Madrid
     volumes:
-      - config:/config
-      - cache:/cache
-      - movies:/movies
-      - series:/series
+      - jellyfin-config:/config
+      - jellyfin-cache:/cache
+      - jellyfin-movies:/movies
+      - jellyfin-series:/series
     devices:
       - /dev/dri:/dev/dri
     ports:
@@ -19,10 +19,14 @@ services:
       - rproxy
     restart: unless-stopped
 volumes:
-  config:
-  cache:
-  movies:
-  series:
+  jellyfin-config:
+    external: true
+  jellyfin-cache:
+    external: true
+  jellyfin-movies:
+    external: true
+  jellyfin-series:
+    external: true
 networks:
   rproxy:
     name: rproxy
