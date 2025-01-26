@@ -1,0 +1,35 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - qbittorrent-config:/config
+      - qbittorrent-downloads:/downloads
+      - jellyfin-movies:/movies
+      - jellyfin-series:/series
+    ports:
+      - 127.0.0.1:8080:8080
+      - 172.30.30.10:6881:6881
+      - 172.30.30.10:6881:6881/udp
+    networks:
+      - rproxy
+    restart: unless-stopped
+volumes:
+  qbittorrent-config:
+    external: true
+  qbittorrent-downloads:
+    external: true
+  jellyfin-movies:
+    external: true
+  jellyfin-series:
+    external: true
+networks:
+  rproxy:
+    name: rproxy
+    external: true
