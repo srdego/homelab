@@ -1,0 +1,28 @@
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - radarr-config:/config
+      - jellyfin-movies:/movies
+      - qbittorrent-downloads:/downloads
+    ports:
+      - 127.0.0.1:7878:7878
+    networks:
+      - rproxy
+    restart: unless-stopped
+volumes:
+  radarr-config:
+    external: true
+  jellyfin-movies:
+    external: true
+  qbittorrent-downloads:
+    external: true
+networks:
+  rproxy:
+    name: rproxy
+    external: true
