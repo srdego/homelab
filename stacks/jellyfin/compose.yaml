@@ -1,0 +1,29 @@
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - config:/config
+      - cache:/cache
+      - movies:/movies
+      - series:/series
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - 127.0.0.1:8096:8096
+    networks:
+      - rproxy
+    restart: unless-stopped
+volumes:
+  config:
+  cache:
+  movies:
+  series:
+networks:
+  rproxy:
+    name: rproxy
+    external: true
