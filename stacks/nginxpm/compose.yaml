@@ -3,8 +3,8 @@ services:
     image: docker.io/jc21/nginx-proxy-manager:latest
     container_name: nginxpm
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - DISABLE_IPV6=true
     volumes:
       - nginxpm-data:/data
