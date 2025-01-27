@@ -1,0 +1,19 @@
+services:
+  portainer:
+    image: docker.io/portainer/portainer-ce:latest
+    container_name: portainer
+    volumes:
+      - portainer-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 127.0.0.1:9443:9443
+    networks:
+      - rproxy
+    restart: unless-stopped
+volumes:
+  portainer-data:
+    external: true
+networks:
+  rproxy:
+    name: rproxy
+    external: true
