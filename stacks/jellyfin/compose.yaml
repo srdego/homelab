@@ -1,3 +1,18 @@
+networks:
+  rproxy:
+    name: rproxy
+    external: true
+
+volumes:
+  jellyfin-config:
+    external: true
+  jellyfin-cache:
+    external: true
+  jellyfin-movies:
+    external: true
+  jellyfin-series:
+    external: true
+
 services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -18,16 +33,3 @@ services:
     networks:
       - rproxy
     restart: unless-stopped
-volumes:
-  jellyfin-config:
-    external: true
-  jellyfin-cache:
-    external: true
-  jellyfin-movies:
-    external: true
-  jellyfin-series:
-    external: true
-networks:
-  rproxy:
-    name: rproxy
-    external: true

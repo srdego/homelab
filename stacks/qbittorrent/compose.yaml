@@ -1,3 +1,18 @@
+networks:
+  rproxy:
+    name: rproxy
+    external: true
+
+volumes:
+  qbittorrent-config:
+    external: true
+  qbittorrent-downloads:
+    external: true
+  jellyfin-movies:
+    external: true
+  jellyfin-series:
+    external: true
+
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -21,16 +36,3 @@ services:
     networks:
       - rproxy
     restart: unless-stopped
-volumes:
-  qbittorrent-config:
-    external: true
-  qbittorrent-downloads:
-    external: true
-  jellyfin-movies:
-    external: true
-  jellyfin-series:
-    external: true
-networks:
-  rproxy:
-    name: rproxy
-    external: true

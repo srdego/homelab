@@ -1,3 +1,12 @@
+networks:
+  rproxy:
+    name: rproxy
+    external: true
+
+volumes:
+  portainer-data:
+    external: true
+
 services:
   portainer:
     image: docker.io/portainer/portainer-ce:latest
@@ -10,10 +19,3 @@ services:
     networks:
       - rproxy
     restart: unless-stopped
-volumes:
-  portainer-data:
-    external: true
-networks:
-  rproxy:
-    name: rproxy
-    external: true

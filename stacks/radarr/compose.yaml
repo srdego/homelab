@@ -1,3 +1,16 @@
+networks:
+  rproxy:
+    name: rproxy
+    external: true
+
+volumes:
+  radarr-config:
+    external: true
+  jellyfin-movies:
+    external: true
+  qbittorrent-downloads:
+    external: true
+
 services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -15,14 +28,3 @@ services:
     networks:
       - rproxy
     restart: unless-stopped
-volumes:
-  radarr-config:
-    external: true
-  jellyfin-movies:
-    external: true
-  qbittorrent-downloads:
-    external: true
-networks:
-  rproxy:
-    name: rproxy
-    external: true

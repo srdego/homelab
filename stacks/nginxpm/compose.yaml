@@ -1,3 +1,14 @@
+networks:
+  rproxy:
+    name: rproxy
+    external: true
+
+volumes:
+  nginxpm-data:
+    external: true
+  nginxpm-letsencrypt:
+    external: true
+
 services:
   nginxpm:
     image: docker.io/jc21/nginx-proxy-manager:latest
@@ -16,12 +27,3 @@ services:
     networks:
       - rproxy
     restart: unless-stopped
-volumes:
-  nginxpm-data:
-    external: true
-  nginxpm-letsencrypt:
-    external: true
-networks:
-  rproxy:
-    name: rproxy
-    external: true

@@ -1,3 +1,12 @@
+networks:
+  rproxy:
+    name: rproxy
+    external: true
+
+volumes:
+  prowlarr-config:
+    external: true
+
 services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -13,10 +22,3 @@ services:
     networks:
       - rproxy
     restart: unless-stopped
-volumes:
-  prowlarr-config:
-    external: true
-networks:
-  rproxy:
-    name: rproxy
-    external: true
