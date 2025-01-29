@@ -1,6 +1,5 @@
 networks:
   rproxy:
-    name: rproxy
     external: true
 
 volumes:
