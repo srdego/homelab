@@ -3,7 +3,7 @@ networks:
     external: true
 
 volumes:
-  gitea:
+  gitea-data:
     external: true
 
 services:
