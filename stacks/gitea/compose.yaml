@@ -1,0 +1,22 @@
+networks:
+  rproxy:
+    external: true
+
+volumes:
+  gitea:
+    external: true
+
+services:
+  gitea:
+    image: docker.io/gitea/gitea:latest
+    container_name: gitea
+    volumes:
+      - gitea-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 127.0.0.1:8080:3000
+      - 127.0.0.1:2222:22
+    networks:
+      - rproxy
+    restart: unless-stopped
