@@ -18,8 +18,6 @@ services:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
     environment:
-      - PUID=0
-      - PGID=0
       - TZ=Europe/Madrid
     volumes:
       - jellyfin-config:/config
