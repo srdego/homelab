@@ -35,7 +35,6 @@ services:
       - jellyfin-movies:/movies
       - jellyfin-series:/series
     ports:
-      - 127.0.0.1:8080:8080
       - 172.30.30.10:6881:6881
       - 172.30.30.10:6881:6881/udp
     networks:
