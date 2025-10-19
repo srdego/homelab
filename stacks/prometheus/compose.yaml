@@ -16,7 +16,11 @@ services:
       - --config.file=/etc/prometheus/prometheus.yaml
       - --storage.tsdb.path=/prometheus
     healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:9090/-/healthy || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- http://localhost:9090/-/healthy > /dev/null 2>&1 || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -40,7 +44,11 @@ services:
     networks:
       - rproxy
     healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:9093/-/healthy || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- http://localhost:9093/-/healthy > /dev/null 2>&1 || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -64,7 +72,11 @@ services:
     networks:
       - rproxy
     healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:9100/metrics || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- http://localhost:9100/metrics > /dev/null 2>&1 || exit 1",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
