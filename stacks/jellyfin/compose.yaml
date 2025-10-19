@@ -17,9 +17,9 @@ services:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
     environment:
-      - PUID=0
-      - PGID=0
-      - TZ=Europe/Madrid
+      PUID: 0
+      PGID: 0
+      TZ: Europe/Madrid
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:8096 || exit 1"]
       interval: 10s

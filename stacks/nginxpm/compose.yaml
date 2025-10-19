@@ -13,9 +13,9 @@ services:
     image: docker.io/jc21/nginx-proxy-manager:latest
     container_name: nginxpm
     environment:
-      - PUID=0
-      - PGID=0
-      - DISABLE_IPV6=true
+      PUID: 0
+      PGID: 0
+      DISABLE_IPV6: true
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:81 || exit 1"]
       interval: 10s
