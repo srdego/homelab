@@ -20,6 +20,12 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Europe/Madrid
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8096 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     volumes:
       - jellyfin-config:/config
       - jellyfin-cache:/cache

@@ -16,6 +16,12 @@ services:
       - PUID=0
       - PGID=0
       - DISABLE_IPV6=true
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:81 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     volumes:
       - nginxpm-data:/data
       - nginxpm-letsencrypt:/etc/letsencrypt
