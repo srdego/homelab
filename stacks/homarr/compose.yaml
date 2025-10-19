@@ -24,8 +24,6 @@ services:
       start_period: 10s
     volumes:
       - homarr-appdata:/appdata
-    ports:
-      - 127.0.0.1:7575:7575
     networks:
       - rproxy
     restart: unless-stopped
