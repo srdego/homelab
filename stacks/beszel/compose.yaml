@@ -1,0 +1,38 @@
+networks:
+  rproxy:
+    external: true
+
+volumes:
+  beszel-data:
+    external: true
+  beszel-socket:
+    external: true
+  beszel-agent-data:
+    external: true
+
+services:
+  beszel:
+    image: docker.io/henrygd/beszel:latest
+    container_name: beszel
+    volumes:
+      - beszel-data:/beszel_data
+      - beszel-socket:/beszel_socket
+    networks:
+      - rproxy
+    restart: unless-stopped
+
+  beszel-agent:
+    image: docker.io/henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    environment:
+      LISTEN: /beszel_socket/beszel.sock
+      HUB_URL: ${BESZEL_HUB_URL}
+      TOKEN: ${BESZEL_TOKEN}
+      KEY: ${BESZEL_KEY}
+    volumes:
+      - beszel-agent-data:/var/lib/beszel-agent
+      - beszel-socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - rproxy
+    restart: unless-stopped
