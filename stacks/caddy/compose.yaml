@@ -1,0 +1,33 @@
+networks:
+  rproxy:
+    external: true
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+    external: true
+
+services:
+  caddy:
+    image: ghcr.io/caddybuilds/caddy-cloudflare:latest
+    container_name: caddy
+    environment:
+      CLOUDFLARE_API_TOKEN: ${CADDY_CLOUDFLARE_API_TOKEN}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - 172.30.30.10:80:80
+      - 172.30.30.10:443:443
+      - 172.30.30.10:443:443/udp
+    networks:
+      - rproxy
+    restart: unless-stopped

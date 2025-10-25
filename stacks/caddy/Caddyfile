@@ -1,0 +1,36 @@
+{
+	# Use Cloudflare DNS-01 ACME challenge for all hosts
+	acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+
+	# Trust Cloudflare proxies so client IPs are preserved
+	# when using Cloudflare
+	servers {
+		trusted_proxies cloudflare
+		client_ip_headers Cf-Connecting-Ip
+	}
+}
+
+# Reverse proxies for internal services
+homarr.hl.srdego.com {
+	reverse_proxy homarr:7575
+}
+
+jellyfin.hl.srdego.com {
+	reverse_proxy jellyfin:8096
+}
+
+mathesar.hl.srdego.com {
+	reverse_proxy mathesar:8000
+}
+
+portainer.hl.srdego.com {
+	reverse_proxy portainer:9000
+}
+
+qbittorrent.hl.srdego.com {
+	reverse_proxy qbittorrent:8080
+}
+
+beszel.hl.srdego.com {
+	reverse_proxy beszel:8090
+}
