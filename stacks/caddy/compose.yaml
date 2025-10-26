@@ -14,12 +14,6 @@ services:
     container_name: caddy
     environment:
       CLOUDFLARE_API_TOKEN: ${CADDY_CLOUDFLARE_API_TOKEN}
-    healthcheck:
-      test: ["CMD-SHELL", "curl -fsS http://localhost:80 || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
