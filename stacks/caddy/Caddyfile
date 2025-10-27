@@ -15,10 +15,6 @@ cockpit.hl.srdego.com {
 	reverse_proxy 172.30.30.10:9090
 }
 
-homarr.hl.srdego.com {
-	reverse_proxy homarr:7575
-}
-
 jellyfin.hl.srdego.com {
 	reverse_proxy jellyfin:8096
 }
